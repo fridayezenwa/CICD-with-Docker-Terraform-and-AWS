@@ -56,6 +56,7 @@ The following environment variables are utilized in the workflow:
 If you encounter issues with the deployment:
 
 - Ensure your environment variables are properly configured
+- Your S3 bucket needs to be created in advance
 - Make sure IAM roles are set up properly in AWS
 - Check that the Terraform state bucket exists and you have the necessary permissions.
 - Review the logs in GitHub Actions for detailed error messages.
