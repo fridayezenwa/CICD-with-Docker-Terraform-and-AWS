@@ -11,12 +11,13 @@ env:
   PRIVATE_SSH_KEY: ${{ secrets.AWS_SSH_KEY_PRIVATE }}
   PUBLIC_SSH_KEY: ${{ secrets.AWS_SSH_KEY_PUBLIC }}
   AWS_REGION: us-east-1
+  ACTIONS_STEP_DEBUG: true
 
 jobs:
   deploy-infra:
     runs-on: ubuntu-latest
     outputs:
-      SERVER_PUBLIC_IP: ${{ steps.set-ip.outputs.instance_public_ip}}
+      SERVER_PUBLIC_IP: ${{ steps.set-ip.outputs.instance_public_ip }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -45,6 +46,7 @@ jobs:
       - name: Set output
         id: set-ip
         run: |-
+          echo "Setting instance public IP..."
           echo "instance_public_ip=$(terraform output -json instance_public_ip | jq -r .)" >> $GITHUB_ENV
         working-directory: ./terraform
   deploy-app:
