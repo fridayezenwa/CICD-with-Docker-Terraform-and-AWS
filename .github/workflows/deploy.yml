@@ -52,6 +52,8 @@ jobs:
         id: set-ip
         run: |-
           echo "::set-output name=instance_public_ip::$(terraform output instance_public_ip)"
+      - name: Debug Terraform Output
+        run: echo "Public IP $(terraform output instance_public_ip)"
   deploy-app:
     runs-on: ubuntu-latest
     needs: deploy-infra
