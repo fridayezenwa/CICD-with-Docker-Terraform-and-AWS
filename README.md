@@ -1,4 +1,4 @@
-# CI/CD with Terraform and AWS
+# CI/CD with Docker, Terraform and AWS
 
 ## Introduction
 
