@@ -2,16 +2,6 @@
 
 This repository demonstrates a CI/CD pipeline using GitHub Actions, Terraform, and AWS services. The pipeline automates the deployment of infrastructure and applications, leveraging Docker containers for application deployment.
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Prerequisites](#prerequisites)
-3. [Getting Started](#getting-started)
-4. [CI/CD Workflow](#cicd-workflow)
-5. [Environment Variables](#environment-variables)
-6. [Troubleshooting](#troubleshooting)
-7. [Contributing](#contributing)
-8. [License](#license)
-
 ## Introduction
 
 This project utilizes a GitHub Actions workflow to manage the deployment of infrastructure and applications in AWS. The infrastructure is provisioned using Terraform, and the application is packaged and deployed using Docker containers.
@@ -25,36 +15,9 @@ Before you begin, ensure you have met the following requirements:
 - [Docker](https://www.docker.com/products/docker-desktop) installed on your local machine (for local testing)
 - A GitHub account with permissions to create repositories and actions
 
-## Getting Started
-
-To get a local copy up and running follow these steps:
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/your-repo-name.git
-    cd your-repo-name
-    ```
-
-2. Set up your AWS credentials and create a `.env` file (or configure secrets in GitHub):
-    ```plaintext
-    AWS_ACCESS_KEY_ID=your_access_key
-    AWS_SECRET_ACCESS_KEY=your_secret_key
-    TF_STATE_BUCKET_NAME=your_tf_state_bucket
-    AWS_REGION=us-east-1
-    ```
-
-3. Install Terraform and Docker if you haven't already.
-
-4. Deploy the infrastructure locally (optional):
-    ```bash
-    cd terraform
-    terraform init
-    terraform apply
-    ```
-
 ## CI/CD Workflow
 
-The CI/CD workflow is defined in the `.github/workflows/ci-cd.yml` file. It consists of two main jobs: `deploy-infra` and `deploy-app`.
+The CI/CD workflow consists of two main jobs: `deploy-infra` and `deploy-app`.
 
 ### 1. Deploy Infrastructure
 
@@ -94,20 +57,10 @@ The following environment variables are utilized in the workflow:
 
 If you encounter issues with the deployment:
 
-- Ensure your AWS credentials are correct.
-- Verify that the specified region is valid.
+- Ensure your environment variables are properly configured
+- Make sure IAM roles are set up properly in AWS
 - Check that the Terraform state bucket exists and you have the necessary permissions.
 - Review the logs in GitHub Actions for detailed error messages.
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/YourFeature`).
-3. Make your changes and commit them (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature/YourFeature`).
-5. Open a pull request.
 
 ## License
 
