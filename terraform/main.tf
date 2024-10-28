@@ -6,23 +6,19 @@ terraform {
     }
   }
   backend "s3" {
-    bucket         = "terraform-project-state-files"
-    key            = "aws/ec2-deploy/terraform.tfstate"
-    region         = "us-east-1"
+    key = "aws/ec2-deploy/terraform.tfstate"
   }
 }
 
 provider "aws" {
   region = var.region
 }
-
 resource "aws_instance" "server" {
   ami                    = "ami-005fc0f236362e99f"
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.deployer.key_name
   vpc_security_group_ids = [aws_security_group.maingroup.id]
   iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name
-
   connection {
     type        = "ssh"
     host        = aws_instance.server.public_ip
@@ -30,17 +26,14 @@ resource "aws_instance" "server" {
     private_key = var.private_key
     timeout     = "4m"
   }
-
   tags = {
-    Name = "TerraformVM"
+    "name" = "TerraformVM"
   }
 }
-
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "ec2-profile"
   role = "ECR-Read-Only"
 }
-
 resource "aws_security_group" "maingroup" {
   egress = [
     {
@@ -80,17 +73,11 @@ resource "aws_security_group" "maingroup" {
     }
   ]
 }
-
 resource "aws_key_pair" "deployer" {
   key_name   = var.key_name
   public_key = var.public_key
 }
-
 output "instance_public_ip" {
   value     = aws_instance.server.public_ip
   sensitive = true
-}
-
-resource "aws_ecr_repository" "example" {
-  name = "example-node-app"
 }
