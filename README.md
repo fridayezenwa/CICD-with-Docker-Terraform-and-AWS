@@ -1,7 +1,5 @@
 # CI/CD with Terraform and AWS
 
-This repository demonstrates a CI/CD pipeline using GitHub Actions, Terraform, and AWS services. The pipeline automates the deployment of infrastructure and applications, leveraging Docker containers for application deployment.
-
 ## Introduction
 
 This project utilizes a GitHub Actions workflow to manage the deployment of infrastructure and applications in AWS. The infrastructure is provisioned using Terraform, and the application is packaged and deployed using Docker containers.
