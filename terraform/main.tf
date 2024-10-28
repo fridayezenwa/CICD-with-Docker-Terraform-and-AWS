@@ -25,7 +25,7 @@ resource "aws_instance" "server" {
 
   connection {
     type        = "ssh"
-    host        = self.public_ip
+    host        = aws_instance.server.public_ip
     user        = "ubuntu"
     private_key = var.private_key
     timeout     = "4m"
