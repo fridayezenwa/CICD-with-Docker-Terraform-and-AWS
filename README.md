@@ -64,3 +64,16 @@ If you encounter issues with the deployment:
 ## License
 
 This project is licensed under the MIT License.
+
+## EC2 Instance
+
+## EC2 Instance
+
+This project includes the creation of an EC2 instance using Terraform. Due to Terraform's state management, the EC2 instance may not be automatically created when you clone the repository.
+
+To create the instance, follow these steps:
+1. Uncomment the EC2 block in the `main.tf` file.
+2. Run `terraform init` to initialize Terraform.
+3. Run `terraform apply` to apply the configuration and create the instance.
+
+If you wish to manually manage the instance or modify its configuration, feel free to edit the `aws_instance` block as needed.
