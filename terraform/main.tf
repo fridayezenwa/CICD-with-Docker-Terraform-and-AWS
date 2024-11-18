@@ -10,26 +10,29 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.region
-}
-resource "aws_instance" "server" {
-  ami                    = "ami-005fc0f236362e99f"
-  instance_type          = "t2.micro"
-  key_name               = aws_key_pair.deployer.key_name
-  vpc_security_group_ids = [aws_security_group.maingroup.id]
-  iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name
-  connection {
-    type        = "ssh"
-    host        = aws_instance.server.public_ip
-    user        = "ubuntu"
-    private_key = var.private_key
-    timeout     = "4m"
-  }
-  tags = {
-    "name" = "TerraformVM"
-  }
-}
+# The EC2 instance creation block is commented out for now. 
+# Uncomment the lines below if you want Terraform to create the EC2 instance.
+
+# provider "aws" {
+#   region = var.region
+# }
+# resource "aws_instance" "server" {
+#   ami                    = "ami-005fc0f236362e99f"
+#   instance_type          = "t2.micro"
+#   key_name               = aws_key_pair.deployer.key_name
+#   vpc_security_group_ids = [aws_security_group.maingroup.id]
+#   iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name
+#   connection {
+#     type        = "ssh"
+#     host        = aws_instance.server.public_ip
+#     user        = "ubuntu"
+#     private_key = var.private_key
+#     timeout     = "4m"
+#   }
+#   tags = {
+#     "name" = "TerraformVM"
+#   }
+# }
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "ec2-profile"
   role = "ECR-Read-Only"
